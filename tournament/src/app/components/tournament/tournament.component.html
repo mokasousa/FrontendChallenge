@@ -1,0 +1,22 @@
+<div>
+    <div>
+        <div *ngIf="selected[1] !== null" (click)="onRemove(selected[1], 1)">
+            <span>{{selected[1].name}}</span>
+        </div>
+    </div>
+    <div>
+        <span *ngIf="selected[2] !== null" (click)="onRemove(selected[2], 2)">
+            {{selected[2].name}}
+        </span>
+    </div>
+    <div>
+        <span *ngIf="selected[3] !== null" (click)="onRemove(selected[3], 3)">
+            {{selected[3].name}}
+        </span>
+    </div>
+    <div>
+        <span *ngIf="selected[4] !== null" (click)="onRemove(selected[4], 4)">
+            {{selected[4].name}}
+        </span>
+    </div>
+</div>
