@@ -1,0 +1,13 @@
+.tournament-container{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr 0.5fr 1fr 0.5fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 600px;
+    height: 400px;
+}
+
+.tournament-box{
+    border: 2px solid turquoise;
+}

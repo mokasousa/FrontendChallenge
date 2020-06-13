@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TournamentService } from '../../services/tournament.service';
 import { Region } from '../../models/region';
+import { Selected } from 'src/app/models/selected';
 
 @Component({
   selector: 'app-tournament',
@@ -10,19 +11,28 @@ import { Region } from '../../models/region';
 })
 
 export class TournamentComponent implements OnInit {
-  selected: { 
-    1: Region|null, 
-    2: Region|null, 
-    3: Region|null, 
-    4: Region|null 
-  } = {
+  selected: Selected = {
     1: null,
     2: null,
     3: null, 
     4: null
   };
 
-  constructor(private tournamentService: TournamentService) {}
+  result: {
+    semifinal1: Region|null;
+    semifinal2: Region|null;
+    champion: Region|null;
+  } = {
+    semifinal1: null,
+    semifinal2: null,
+    champion: null
+  }
+
+  constructor(private tournamentService: TournamentService) {
+    TournamentService.generatedTournament.subscribe(
+      result => this.result = result
+    );
+  }
 
   ngOnInit(): void {
     TournamentService.selectedRegion.subscribe(
@@ -30,7 +40,11 @@ export class TournamentComponent implements OnInit {
     );
   }
 
-  onRemove(selected, position){
-    this.tournamentService.removeSelectedRegion(selected, position);
+  onRemove(selectedRegion: Region, position: number) {
+    this.tournamentService.removeSelectedRegion(selectedRegion, position);
+  }
+
+  onGenerate(selectedTournament: Selected) {
+    this.tournamentService.generateTournament(selectedTournament);
   }
 }
