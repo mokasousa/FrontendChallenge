@@ -74,10 +74,6 @@ export class TournamentService {
     semifinal1: Region|null;
     semifinal2: Region|null;
     champion: Region|null;
-  } = {
-    semifinal1: null,
-    semifinal2: null,
-    champion: null
   }
 
   constructor() {}

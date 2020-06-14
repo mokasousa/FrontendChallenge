@@ -1,9 +1,26 @@
+@import 'base/typography';
+
 .region {
     position: relative;
+    background-color: #0A0A0C;
+    border: none;
+    border-radius: 100%;
+    text-align: center;
+    height: 80px;
+    width: 80px;
+
+    &:active, &:visited, &:focus {
+        border: none;
+        outline: none;
+    }
+
+    &:disabled{
+        opacity: 0.4;
+    }
 }
 
 .region--icon {
-    height: 70px;
+    height: 60px;
 }
 
 .region--name {

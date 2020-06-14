@@ -1,5 +1,25 @@
+@import 'abstracts/variables';
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
+
+body {
+    color: $color-white;
+    line-height: 1.6;
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
 .heading-primary {
-    color: $color-yellow;
+    color: #C28F2C;
     font-weight: 800;
     text-transform: uppercase;
+    word-spacing: 2px;
+    letter-spacing: 2px;
+    font-size: 2.7rem;
+}
+
+.text {
+    color: $color-white;
+    font-weight: 700;
+    font-size: 1.6rem;
 }
