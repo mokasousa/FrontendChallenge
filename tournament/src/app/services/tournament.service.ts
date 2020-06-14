@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 import { Region } from '../models/region';
+import { Selected } from '../models/selected';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Region } from '../models/region';
 export class TournamentService {
   static selectedRegion = new EventEmitter();
   static updateRegions = new EventEmitter();
+  static generatedTournament = new EventEmitter();
   //private
   regions: Region[] = [
     {
@@ -61,17 +63,22 @@ export class TournamentService {
     }
   ]
 
-  selected: { 
-    1: Region|null, 
-    2: Region|null, 
-    3: Region|null, 
-    4: Region|null 
-  } = {
+  selected: Selected = {
     1: null,
     2: null,
     3: null, 
     4: null
   };
+
+  result: {
+    semifinal1: Region|null;
+    semifinal2: Region|null;
+    champion: Region|null;
+  } = {
+    semifinal1: null,
+    semifinal2: null,
+    champion: null
+  }
 
   constructor() {}
 
@@ -88,7 +95,7 @@ export class TournamentService {
           : el
       );
       TournamentService.updateRegions.emit(this.regions);
-      this.selected = {...this.selected, [emptyPosition]: region}
+      this.selected = {...this.selected, [emptyPosition]: region};
       TournamentService.selectedRegion.emit(this.selected);
     }
   }
@@ -102,6 +109,19 @@ export class TournamentService {
     );
     TournamentService.updateRegions.emit(this.regions);
     TournamentService.selectedRegion.emit(this.selected);
+  }
+
+  // +Date.now()%2 + Math.round(Math.random())
+  generateTournament(selected: Selected){
+    const semifinal1 = selected[Math.round(Math.random()) + 1];
+    const semifinal2 = selected[Math.round(Math.random()) + 3];
+    const semifinal = [semifinal1, semifinal2] ;
+    this.result = {
+      semifinal1,
+      semifinal2,
+      champion: semifinal[Math.round(Math.random())]
+    };
+    TournamentService.generatedTournament.emit(this.result);
   }
   
 }
