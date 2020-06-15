@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TournamentService } from '../../services/tournament.service';
 import { Region } from '../../models/region';
 import { Selected } from 'src/app/models/selected';
+import { Result } from 'src/app/models/result';
 
 @Component({
   selector: 'app-tournament',
@@ -18,11 +19,7 @@ export class TournamentComponent implements OnInit {
     4: null
   };
 
-  result: {
-    semifinal1: Region|null;
-    semifinal2: Region|null;
-    champion: Region|null;
-  } = {
+  result: Result = {
     semifinal1: null,
     semifinal2: null,
     champion: null
@@ -49,7 +46,7 @@ export class TournamentComponent implements OnInit {
   }
 
   onReset(selected: Selected, result): void {
-    this.tournamentService.resetTournament(this.selected, this.result);
+    this.tournamentService.resetTournament(selected, result);
   }
 
   showButton(): boolean {

@@ -10,6 +10,7 @@ import { Region } from '../../models/region';
 })
 export class ListComponent implements OnInit {
   regions: Region[] = [];
+  
   constructor(private tournamentService: TournamentService) {
     TournamentService.updateRegions.subscribe(
       regions => this.regions = regions
