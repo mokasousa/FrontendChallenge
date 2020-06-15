@@ -1,4 +1,6 @@
 @import 'abstracts/variables';
+@import 'abstracts/mixins';
+
 :host{
     position: relative;
 }
@@ -16,6 +18,7 @@
     width: 170px;
     font-weight: 700;
     padding: 7px;
+    font-family: 'Aref Ruqaa', serif;
 }
 
 .tournament{
@@ -58,6 +61,10 @@
             justify-content: center;
             align-items: center;
             margin: 0 1vw;
+            @include responsive(phone-port) {
+                width: 70px;
+                height: 70px;
+            }
         }
         &--container {
             background-color: $color-black;
@@ -72,6 +79,10 @@
             &:hover{
                 cursor: pointer;
             }
+            @include responsive(phone-port) {
+                width: 60px;
+                height: 60px;
+            }
         }
         &--container.semifinal{
             background-color: $color-silver;
@@ -83,6 +94,9 @@
 
         &--icon {
             height: 60px;
+            @include responsive(phone-port) {
+                height: 50px;
+            }
         }
         &--icon.champion {
             filter: grayscale(100%);

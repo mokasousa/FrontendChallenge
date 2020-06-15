@@ -1,7 +1,12 @@
+@import 'abstracts/mixins';
+
 :host {
     display: flex;
     flex-direction: column;
     height: 85vh;
+    @include responsive(tab-port){
+        height: 100vh;
+    }
 }
 
 .bg-video {
@@ -12,6 +17,12 @@
     width: 100%;
     z-index: -1;
     overflow: hidden;
+    @include responsive(tab-port){
+        height: 114vh;
+    }
+    @include responsive(phone-port){
+        height: 117vh;
+    }
 
     &--content {
         width: 100%;

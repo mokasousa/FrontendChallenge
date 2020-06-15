@@ -2,11 +2,14 @@
 
 :host {
     width: 100%;
-    height: 14vh;
     background-color: $color-gray-dark;
     display:flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
+}
+
+header {
     padding-bottom: 2vh;
 }

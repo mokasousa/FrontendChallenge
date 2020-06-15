@@ -1,4 +1,5 @@
 @import 'base/typography';
+@import 'abstracts/mixins';
 
 .region {
     position: relative;
@@ -9,6 +10,10 @@
     height: 80px;
     width: 80px;
     margin: 0.8vh 1vw;
+    @include responsive(phone-port){
+        height: 75px;
+        width: 75px;
+    }
 
     &:active, &:visited, &:focus {
         border: none;
@@ -24,6 +29,9 @@
 
     &--icon {
         height: 60px;
+        @include responsive(phone-port){
+            height: 55px;
+        }
     }
     &--name {
         position: absolute;
