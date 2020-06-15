@@ -40,11 +40,23 @@ export class TournamentComponent implements OnInit {
     );
   }
 
-  onRemove(selectedRegion: Region, position: number) {
+  onRemove(selectedRegion: Region, position: number): void {
     this.tournamentService.removeSelectedRegion(selectedRegion, position);
   }
 
-  onGenerate(selectedTournament: Selected) {
+  onGenerate(selectedTournament: Selected): void {
     this.tournamentService.generateTournament(selectedTournament);
+  }
+
+  onReset(selected: Selected, result): void {
+    this.tournamentService.resetTournament(this.selected, this.result);
+  }
+
+  showButton(): boolean {
+    return Object.values(this.result).some(i => i === null);
+  }
+
+  disableButton(): boolean {
+    return Object.values(this.selected).some(i => i === null);
   }
 }

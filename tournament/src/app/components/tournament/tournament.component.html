@@ -1,33 +1,65 @@
-<section>
-    <!-- [disabled]="Object.values(selected).some(i => i === null)" -->
+<!-- <section> -->
     <button 
-        class="tournament-btn--generate" 
+        *ngIf="showButton()"
+        class="btn-tournament" 
         (click)="onGenerate(selected)" 
+        [disabled]="disableButton()"
     >
         Gerar Torneio
     </button>
-    <!-- <button class="tournament-btn--reset" (click)="onReset()">
+    <button *ngIf="!showButton()"
+        class="btn-tournament" 
+        (click)="onReset(selected, result)"
+    >
         Gerar Novo Torneio
-    </button> -->
-    <div class="tournament">
+    </button>
+    <section class="tournament">
         <div class="tournament-box tournament-box--1">
-            <div>
-                <span *ngIf="selected[1] !== null" (click)="onRemove(selected[1], 1)">{{selected[1].name}}</span>
+            <div class="tournament-box--frame">
+                <div 
+                    class="tournament-box--container" 
+                    *ngIf="selected[1] !== null" 
+                    (click)="onRemove(selected[1], 1)"
+                >
+                    <img class="tournament-box--icon" src="../../../assets/{{selected[1].icon}}" />
+                    <span class="tournament-box--name text">{{selected[1].name}}</span>
+                </div>
             </div>
         </div>
         <div class="tournament-box tournament-box--2">
-            <div>
-                <span *ngIf="selected[2] !== null" (click)="onRemove(selected[2], 2)">{{selected[2].name}}</span>
+            <div class="tournament-box--frame">
+                <div 
+                    class="tournament-box--container" 
+                    *ngIf="selected[2] !== null" 
+                    (click)="onRemove(selected[2], 2)"
+                >
+                    <img class="tournament-box--icon" src="../../../assets/{{selected[2].icon}}" />
+                    <span class="tournament-box--name text">{{selected[2].name}}</span>
+                </div>
             </div>
         </div>
         <div class="tournament-box tournament-box--3">
-            <div>
-                <span *ngIf="selected[3] !== null" (click)="onRemove(selected[3], 3)">{{selected[3].name}}</span>
+            <div class="tournament-box--frame">
+                <div 
+                    class="tournament-box--container"
+                    *ngIf="selected[3] !== null" 
+                    (click)="onRemove(selected[3], 3)"
+                >
+                    <img class="tournament-box--icon" src="../../../assets/{{selected[3].icon}}" />
+                    <span class="tournament-box--name text">{{selected[3].name}}</span>
+                </div>
             </div>
         </div>
         <div class="tournament-box tournament-box--4">
-            <div>
-                <span *ngIf="selected[4] !== null" (click)="onRemove(selected[4], 4)">{{selected[4].name}}</span>
+            <div class="tournament-box--frame">
+                <div
+                    class="tournament-box--container"
+                    *ngIf="selected[4] !== null"
+                    (click)="onRemove(selected[4], 4)"
+                >
+                    <img class="tournament-box--icon" src="../../../assets/{{selected[4].icon}}" />
+                    <span class="tournament-box--name text">{{selected[4].name}}</span>
+                </div>
             </div>
         </div>
         <div class="tournament-icon tournament-icon--1">
@@ -37,22 +69,41 @@
             <img src="../../../assets/y_icon.svg" />
         </div>
         <div class="tournament-box tournament-box--5">
-            <div>
-                <span *ngIf="result.semifinal1 !== null">{{result.semifinal1.name}}</span>
+            <div class="tournament-box--frame">
+                <div
+                    class="tournament-box--container semifinal"
+                    *ngIf="result.semifinal1 !== null"
+                >
+                    <img class="tournament-box--icon" src="../../../assets/{{result.semifinal1.icon}}" />
+                    <span class="tournament-box--name text semifinal">{{result.semifinal1.name}}</span>
+                </div>
             </div>
         </div>
         <div class="tournament-box tournament-box--6">
-            <div>
-                <span *ngIf="result.semifinal2 !== null">{{result.semifinal2.name}}</span>
+            <div class="tournament-box--frame">
+                <div
+                    class="tournament-box--container semifinal"
+                    *ngIf="result.semifinal2 !== null"
+                >
+                    <img class="tournament-box--icon" src="../../../assets/{{result.semifinal2.icon}}" />
+                    <span class="tournament-box--name text semifinal">{{result.semifinal2.name}}</span>
+                </div>
             </div>
         </div>
         <div class="tournament-icon tournament-icon--3">
             <img src="../../../assets/y_icon.svg" />
         </div>
         <div class="tournament-box tournament-box--7">
-            <div>
-                <span *ngIf="result.champion !== null">{{result.champion.name}}</span>
+            <div class="tournament-box--frame">
+                <div
+                    class="tournament-box--container champion"
+                    *ngIf="result.champion !== null"
+                >
+                    <img class="tournament-box--icon champion" src="../../../assets/{{result.champion.icon}}" />
+                    <span class="tournament-box--name text">{{result.champion.name}}</span>
+                </div>
             </div>
+            <p class="tournament-box--7 champion" *ngIf="result.champion !== null">Vencedor!</p>
         </div>
-    </div>
-</section>
+    </section>
+<!-- </section> -->

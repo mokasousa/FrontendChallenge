@@ -1,4 +1,4 @@
-<button class="region" [id]="region.id" (click)="onSelect(region)" [disabled]="region.inTournament">
+<button class="region" (click)="onSelect(region)" [disabled]="region.inTournament">
     <img class="region--icon" src="../../../assets/{{region.icon}}" />
-    <span class="region--name">{{region.name}}</span>
+    <span class="region--name text">{{region.name}}</span>
 </button>

@@ -1,14 +1,42 @@
+@import 'base/typography';
+@import 'abstracts/mixins';
+
 .region {
     position: relative;
-}
+    background-color: $color-black;
+    border: none;
+    border-radius: 100%;
+    text-align: center;
+    height: 80px;
+    width: 80px;
+    margin: 0.8vh 1vw;
+    @include responsive(phone-port){
+        height: 75px;
+        width: 75px;
+    }
 
-.region--icon {
-    height: 70px;
-}
+    &:active, &:visited, &:focus {
+        border: none;
+        outline: none;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+    &:disabled{
+        opacity: 0;
+        cursor: unset;
+    }
 
-.region--name {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    &--icon {
+        height: 60px;
+        @include responsive(phone-port){
+            height: 55px;
+        }
+    }
+    &--name {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 }

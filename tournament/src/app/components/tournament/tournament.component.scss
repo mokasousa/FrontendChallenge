@@ -1,21 +1,38 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+:host{
+    position: relative;
+}
+.btn-tournament{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -210%);
+    border-image: linear-gradient(180deg, $color-golden, $color-golden-dark);
+    border: 2px solid;
+    color: $color-golden-dark;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: #171817;
+    width: 170px;
+    font-weight: 700;
+    padding: 7px;
+    font-family: 'Aref Ruqaa', serif;
+}
+
 .tournament{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 1vw;
-    // grid-row-gap: 0px;
+    // grid-row-gap: 8px;
     width: fit-content;
-    height: 400px;
+    height: 437px;
     margin: auto;
     
     &-box{
-        & > div {
-            width: 90px;
-            height: 90px;
-            border: 2px solid turquoise;
-            border-radius: 100%;
-            margin: auto;
-        }
+        margin: auto;
 
         &--5{
             grid-column: 1/ span 2;
@@ -25,10 +42,78 @@
         }
         &--7{
             grid-column: 2/ span 2;
+            position: relative;
+            & > p {
+                position: absolute;
+                color: $color-white;
+                bottom: 110%;
+                left: 5%;
+                text-transform: uppercase;
+            } 
+        }
+        &--frame {
+            width: 85px;
+            height: 85px;
+            background-image: url("../../../assets/champion_icon_frame.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 1vw;
+            @include responsive(phone-port) {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        &--container {
+            background-color: $color-black;
+            width: 74px;
+            height: 74px;
+            border-radius: 100%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            position:relative;
+            &:hover{
+                cursor: pointer;
+            }
+            @include responsive(phone-port) {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        &--container.semifinal{
+            background-color: $color-silver;
+        }
+        &--container.champion{
+            animation: pulse 2s infinite;
+            background-color: $color-golden;
+        }
+
+        &--icon {
+            height: 60px;
+            @include responsive(phone-port) {
+                height: 50px;
+            }
+        }
+        &--icon.champion {
+            filter: grayscale(100%);
+        }
+        
+        &--name {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        &--name.semifinal {
+            color: $color-gray-dark;
         }
     }
 
-    &-icon{
+    &-icon {
         text-align: center;
         &--1{
             grid-column: span 2; 
@@ -41,10 +126,3 @@
         }
     }
 }
-
-// .grid-column-1 .item-1 {
-// 	grid-column: 3;
-// }
-// .grid-column-2 .item-5 {
-// 	grid-column: span 2;
-// }
