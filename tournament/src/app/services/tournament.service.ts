@@ -1,7 +1,10 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+import { BROWSER_STORAGE, BrowserStorageService } from './browser-storage.service';
+
 import { Region } from '../models/region';
 import { Selected } from '../models/selected';
+import { Result } from '../models/result';
 
 @Injectable({
   providedIn: 'root'
@@ -70,13 +73,9 @@ export class TournamentService {
     4: null
   };
 
-  result: {
-    semifinal1: Region|null;
-    semifinal2: Region|null;
-    champion: Region|null;
-  }
+  result: Result;
 
-  constructor() {}
+  constructor(private localStorageService: BrowserStorageService) {}
 
   getRegions() {
     return this.regions;
@@ -110,16 +109,18 @@ export class TournamentService {
   generateTournament(selected: Selected){
     const semifinal1 = selected[Math.round(Math.random()) + 1];
     const semifinal2 = selected[Math.round(Math.random()) + 3];
-    const semifinal = [semifinal1, semifinal2] ;
+    const semifinal = [semifinal1, semifinal2];
+    const champion = semifinal[Math.round(Math.random())];
     this.result = {
       semifinal1,
       semifinal2,
-      champion: semifinal[Math.round(Math.random())]
+      champion 
     };
+    this.localStorageService.set("champion", champion.name);
     TournamentService.generatedTournament.emit(this.result);
   }
   
-  resetTournament(selected: Selected, result){
+  resetTournament(selected: Selected, result: Result){
     this.regions = this.regions.map(el => ({ ...el, inTournament: false }));
     Object.keys(selected).forEach(key => selected[key] = null);
     Object.keys(result).forEach(key => result[key] = null);
