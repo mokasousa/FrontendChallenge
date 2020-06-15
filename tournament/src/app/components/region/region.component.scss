@@ -2,30 +2,33 @@
 
 .region {
     position: relative;
-    background-color: #0A0A0C;
+    background-color: $color-black;
     border: none;
     border-radius: 100%;
     text-align: center;
     height: 80px;
     width: 80px;
+    margin: 0.8vh 1vw;
 
     &:active, &:visited, &:focus {
         border: none;
         outline: none;
     }
-
-    &:disabled{
-        opacity: 0.4;
+    &:hover{
+        cursor: pointer;
     }
-}
+    &:disabled{
+        opacity: 0;
+        cursor: unset;
+    }
 
-.region--icon {
-    height: 60px;
-}
-
-.region--name {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    &--icon {
+        height: 60px;
+    }
+    &--name {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 }

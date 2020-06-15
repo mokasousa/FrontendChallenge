@@ -11,7 +11,7 @@ export class TournamentService {
   static selectedRegion = new EventEmitter();
   static updateRegions = new EventEmitter();
   static generatedTournament = new EventEmitter();
-  //private
+
   regions: Region[] = [
     {
       id:1,
@@ -97,17 +97,16 @@ export class TournamentService {
   }
 
   removeSelectedRegion(region: Region, position: number) {
-    this.selected = {...this.selected, [position]: null};
     this.regions = this.regions.map(el =>
       el.id === region.id
-        ? { ...el, inTournament: false }
-        : el
+      ? { ...el, inTournament: false }
+      : el
     );
-    TournamentService.updateRegions.emit(this.regions);
+    this.selected = {...this.selected, [position]: null};
     TournamentService.selectedRegion.emit(this.selected);
+    TournamentService.updateRegions.emit(this.regions);
   }
 
-  // +Date.now()%2 + Math.round(Math.random())
   generateTournament(selected: Selected){
     const semifinal1 = selected[Math.round(Math.random()) + 1];
     const semifinal2 = selected[Math.round(Math.random()) + 3];
@@ -120,4 +119,12 @@ export class TournamentService {
     TournamentService.generatedTournament.emit(this.result);
   }
   
+  resetTournament(selected: Selected, result){
+    this.regions = this.regions.map(el => ({ ...el, inTournament: false }));
+    Object.keys(selected).forEach(key => selected[key] = null);
+    Object.keys(result).forEach(key => result[key] = null);
+    TournamentService.updateRegions.emit(this.regions);
+    TournamentService.selectedRegion.emit(this.selected);
+    TournamentService.generatedTournament.emit(this.result);
+  }
 }

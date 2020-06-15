@@ -48,8 +48,8 @@ export class TournamentComponent implements OnInit {
     this.tournamentService.generateTournament(selectedTournament);
   }
 
-  onReset() {
-    console.log('reset');
+  onReset(selected: Selected, result): void {
+    this.tournamentService.resetTournament(this.selected, this.result);
   }
 
   showButton(): boolean {
